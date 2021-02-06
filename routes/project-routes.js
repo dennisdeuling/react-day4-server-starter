@@ -6,7 +6,7 @@ const router = express.Router();
 const Project = require('../models/project-model');
 const Task = require('../models/task-model'); // <== !!!
 
-// Find the projects
+// GET route => to get all the projects
 router.get('/projects', (req, res, next) => {
 	Project
 		.find()
@@ -19,7 +19,7 @@ router.get('/projects', (req, res, next) => {
 		});
 });
 
-// Create a new project
+// POST route => to create a new project
 router.post('/projects', (req, res, next) => {
 	Project
 		.create({
@@ -35,7 +35,7 @@ router.post('/projects', (req, res, next) => {
 		});
 });
 
-// Get the specific project
+// GET route => to get a specific project/detailed view
 router.get('/projects/:projectId', (req, res, next) => {
 	if (!mongoose.Types.ObjectId.isValid(req.params.projectId)) {
 		res.status(400).json({message: 'Specified ID is not valid'});
@@ -53,7 +53,7 @@ router.get('/projects/:projectId', (req, res, next) => {
 		});
 });
 
-// Update a project
+// PUT route => to update a specific project
 router.put('/projects/:projectId', (req, res, next) => {
 	if (!mongoose.Types.ObjectId.isValid(req.params.projectId)) {
 		res.status(400).json({message: 'Specified ID is not valid'});
@@ -69,6 +69,7 @@ router.put('/projects/:projectId', (req, res, next) => {
 		});
 });
 
+// DELETE route => to delete a specific project
 router.delete('/projects/:projectId', (req, res, next) => {
 	if (!mongoose.Types.ObjectId.isValid(req.params.projectId)) {
 		res.status(400).json({message: 'Specified ID is not valid'});

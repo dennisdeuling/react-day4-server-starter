@@ -19,7 +19,7 @@ router.get('/tasks/:taskId', (req, res, next) => {
 });
 
 
-// Create a new task
+// POST route => to create a new task
 router.post('/tasks', (req, res, next) => {
 	Task
 		.create({
