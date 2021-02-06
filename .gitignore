@@ -6,3 +6,9 @@ npm-debug.log
 
 # Environment Variables should NEVER be published
 .env
+
+
+modules.xml
+react-day4-server-starter.iml
+vcs.xml
+.idea*
