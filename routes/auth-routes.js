@@ -8,7 +8,6 @@ const bcrypt = require('bcryptjs');
 // require the user model !!!!
 const User = require('../models/user-model');
 
-
 authRoutes.post('/signup', (req, res, next) => {
 	const username = req.body.username;
 	const password = req.body.password;
@@ -92,5 +91,19 @@ authRoutes.post('/login', (req, res, next) => {
 	})(req, res, next);
 });
 
+authRoutes.post('/logout', (req, res, next) => {
+	// req.logout() is defined by passport
+	req.logout();
+	res.status(200).json({message: 'Log out success!'});
+});
+
+authRoutes.get('/loggedin', (req, res, next) => {
+	// req.isAuthenticated() is defined by passport
+	if (req.isAuthenticated()) {
+		res.status(200).json(req.user);
+		return;
+	}
+	res.status(403).json({message: 'Unauthorized'});
+});
 
 module.exports = authRoutes;
