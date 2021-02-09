@@ -72,14 +72,15 @@ app.use(
 	})
 );
 
-// ROUTES MIDDLEWARE STARTS HERE:
 
 const index = require('./routes/index');
 app.use('/', index);
 
+const authRoutes = require('./routes/auth-routes');
+app.use('/api', authRoutes);
+
 const projectRoutes = require('./routes/project-routes');
 app.use('/api', projectRoutes);
-
 
 const tasksRoutes = require('./routes/tasks-routes');
 app.use('/api', tasksRoutes);
