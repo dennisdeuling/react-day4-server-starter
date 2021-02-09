@@ -8,8 +8,11 @@ const projectSchema = new Schema({
 	description: String,
 	tasks: [{
 		type: Schema.Types.ObjectId, ref: 'Task'
-	}]
-	// owner will be added later on
+	}],
+	owner: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	}
 });
 
 const Project = mongoose.model('Project', projectSchema);
