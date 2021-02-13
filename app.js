@@ -73,16 +73,10 @@ app.use(
 );
 
 
-const index = require('./routes/index');
-app.use('/', index);
-
-const authRoutes = require('./routes/auth-routes');
-app.use('/api', authRoutes);
-
-const projectRoutes = require('./routes/project-routes');
-app.use('/api', projectRoutes);
-
-const tasksRoutes = require('./routes/tasks-routes');
-app.use('/api', tasksRoutes);
+app.use('/', require('./routes/index'));
+app.use('/api', require('./routes/auth-routes'));
+app.use('/api', require('./routes/project-routes'));
+app.use('/api', require('./routes/tasks-routes'));
+app.use('/api', require('./routes/file-upload-routes'));
 
 module.exports = app;

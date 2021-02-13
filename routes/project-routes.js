@@ -21,13 +21,13 @@ router.get('/projects', (req, res, next) => {
 
 // POST route => to create a new project
 router.post('/projects', (req, res, next) => {
-	Project
-		.create({
-			title: req.body.title,
-			description: req.body.description,
-			tasks: [],
-			owner: req.user._id
-		})
+	Project.create({
+		title: req.body.title,
+		description: req.body.description,
+		imageUrl: req.body.imageUrl,
+		tasks: [],
+		owner: req.user._id
+	})
 		.then(newProject => {
 			res.json(newProject);
 		})
@@ -43,8 +43,7 @@ router.get('/projects/:projectId', (req, res, next) => {
 		return;
 	}
 
-	Project
-		.findById(req.params.projectId)
+	Project.findById(req.params.projectId)
 		.populate('tasks')
 		.then(project => {
 			res.json(project);
@@ -60,8 +59,7 @@ router.put('/projects/:projectId', (req, res, next) => {
 		res.status(400).json({message: 'Specified ID is not valid'});
 		return;
 	}
-	Project
-		.findByIdAndUpdate(req.params.projectId, req.body)
+	Project.findByIdAndUpdate(req.params.projectId, req.body)
 		.then(() => {
 			res.json({message: `Project with ${req.params.projectId} is updated successfully.`});
 		})
@@ -76,8 +74,7 @@ router.delete('/projects/:projectId', (req, res, next) => {
 		res.status(400).json({message: 'Specified ID is not valid'});
 		return;
 	}
-	Project
-		.findByIdAndRemove(req.params.projectId)
+	Project.findByIdAndRemove(req.params.projectId)
 		.then(() => {
 			res.json({message: `Project with ${req.params.id} is removed successfully.`});
 		})
